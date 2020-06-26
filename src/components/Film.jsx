@@ -1,9 +1,14 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
+import "./Film.scss";
 // libraries & packages
 import axios from "axios";
+// context
+import { AppContext } from "../context/AppContext";
 
-const Film = ({ film }) => {
-  console.log(film);
+const Film = () => {
+  // context
+  const { film, setTitleClicked } = useContext(AppContext);
+
   const {
     created,
     director,
@@ -29,6 +34,9 @@ const Film = ({ film }) => {
       <p className="date">Date: {release_date}</p>
       <p className="date">Director: {director}</p>
       <p className="date">Producer: {producer}</p>
+      <button className="button" onClick={() => setTitleClicked(false)}>
+        Back
+      </button>
     </div>
   );
 };

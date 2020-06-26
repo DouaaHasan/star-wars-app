@@ -1,0 +1,17 @@
+.header-wrap {
+  width: 100%;
+  text-align: center;
+  min-height: 10vh;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2rem 0;
+  cursor: pointer;
+
+  h1 {
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: maroon;
+    text-shadow: 3px 5px black;
+    font-size: 7rem;
+    margin: 0 auto;
+  }
+}

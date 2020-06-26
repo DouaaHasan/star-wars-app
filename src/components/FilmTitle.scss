@@ -1,0 +1,19 @@
+.title-child {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: 2px solid transparent;
+  color: #999;
+  text-shadow: 0.5px 1px maroon;
+  width: 50%;
+  margin: 1.1rem auto;
+  border-radius: 20px;
+  padding: 1rem;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 0.4s ease-in-out;
+    color: maroon;
+    border-left: 100px solid maroon;
+  }
+}

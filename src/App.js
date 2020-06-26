@@ -1,22 +1,29 @@
-import React, { Fragment } from "react";
-import FilmsList from "./components/FilmsList";
+import React from "react";
+import "./default.scss";
+// context
+import { AppContextProvider } from "./context/AppContext";
 // assets
-import bg from "./assets/dark.jpg";
+import bg2 from "./assets/1b504e7a2553be9c2d00d1af501680a5.jpg";
+// components
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
+import Main from "./layout/Main";
 
 const App = () => (
-  <Fragment>
-    <header className="App-header">
-      <h1>Star Wars Movies</h1>
-    </header>
-    <main
-      style={{
-        backgroundImage: `url(${bg})`,
-        backgroundSize: "100%",
-      }}
-    >
-      <FilmsList />
-    </main>
-  </Fragment>
+  <div
+    className="App"
+    style={{
+      backgroundImage: `url(${bg2})`,
+      backgroundSize: "cover",
+      backgroundPositionX: "40%",
+    }}
+  >
+    <AppContextProvider>
+      <Header />
+      <Main />
+      <Footer />
+    </AppContextProvider>
+  </div>
 );
 
 export default App;

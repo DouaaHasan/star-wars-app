@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback, Fragment } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import "./FilmsList.scss";
 // libraries & packages
 import axios from "axios";
-import Film from "./Film";
 // components
+import FilmTitle from "./FilmTitle";
 
 const FilmsList = () => {
   const filmsURL = "https://swapi.dev/api/films/";
@@ -31,13 +32,19 @@ const FilmsList = () => {
     <div className="filmList-wrap">
       {errMsg && <div className="err">{errMsg}</div>}
 
-      <div className="filmList-parent">
-        {!isLoading &&
+      <div className="filmList-container">
+        {isLoading ? (
+          <h2>LOADING...</h2>
+        ) : (
           films.map((f) => (
-            <div className="film-item" key={f.episode_id}>
-              <Film film={f} />
-            </div>
-          ))}
+            <FilmTitle
+              key={f.episode_id}
+              className="titles-parent"
+              title={f.title}
+              film={f}
+            />
+          ))
+        )}
       </div>
     </div>
   );
