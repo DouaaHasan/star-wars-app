@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./FilmsList.scss";
 // libraries & packages
 import axios from "axios";
@@ -37,12 +37,7 @@ const FilmsList = () => {
           <h2>LOADING...</h2>
         ) : (
           films.map((f) => (
-            <FilmTitle
-              key={f.episode_id}
-              className="titles-parent"
-              title={f.title}
-              film={f}
-            />
+            <FilmTitle key={f.episode_id} className="titles-parent" title={f.title} film={f} />
           ))
         )}
       </div>

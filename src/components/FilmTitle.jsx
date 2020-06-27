@@ -8,7 +8,6 @@ const FilmTitle = ({ film }) => {
   return (
     <h2
       onClick={() => {
-        console.log(film.title);
         setTitleClicked(true);
         setFilm(film);
       }}

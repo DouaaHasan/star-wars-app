@@ -1,28 +1,57 @@
-.credits {
-  .headings {
-    .film-title {
-    }
+.film-wrap {
+  max-width: 90%;
+  padding: 0;
+  // border: 2px yellow solid;
+  margin: 0 auto;
+
+  .film-title {
+    background: rgba(200, 0, 0, 0.4);
+    text-align: center;
+    width: 60%;
+    margin: 2rem auto;
+  }
+
+  .crawl,
+  .date {
+    font-size: 3rem;
+    text-align: justify;
+    color: #ccc;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0;
+    margin: 0 auto;
   }
 
   .crawl {
-    font-size: 3rem;
-    text-align: justify;
-    color: #bbb;
-    max-width: 90%;
-    padding: 0;
-    margin: 0 auto;
+    margin-bottom: 7rem;
+    border-radius: 20px;
+    padding: 1rem;
+  }
+
+  .credits-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+  }
+
+  .credits {
+  }
+
+  .date {
+    color: maroon;
+    background: rgba(0, 0, 0, 0.7);
+
+    .pre {
+      color: #ccc;
+    }
   }
 
   button {
     padding: 2rem;
     background: maroon;
-    font-size: 7rem;
+    font-size: 5rem;
     color: white;
     cursor: pointer;
     border-radius: 20px;
-    position: absolute;
-    top: 660px;
-    right: 80px;
 
     &:hover {
       color: black;
@@ -30,6 +59,22 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  .chars-wrap {
+    color: white;
+    border: 2px solid white;
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    flex-wrap: wrap;
+
+    .char {
+      border: 1px solid maroon;
+      min-width: 30%;
+      min-height: 30vh;
+      margin: 1rem;
     }
   }
 }
