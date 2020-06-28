@@ -10,30 +10,41 @@ const Film = () => {
   const { film, setTitleClicked } = useContext(AppContext);
   const { director, opening_crawl, producer, title, release_date, characters } = film;
   // state
-  const charList = [];
   const [, setLoading] = useState(false);
   const [, setErrMsg] = useState("");
+  const [charList, setCharList] = useState([]);
+  const [planets, setPlanets] = useState([]);
 
   // methods
-  const fetchChars = useCallback(async () => {
-    setLoading(true);
-
-    characters.map(async (c) => {
+  const fetchURL = useCallback(
+    async (url, func) => {
+      setLoading(true);
       try {
-        const fetched = await axios.get(c);
-        charList.push(fetched.data);
+        const fetched = await axios.get(url);
+        func((pre) => [...pre, fetched.data]);
         setLoading(false);
       } catch (err) {
         setErrMsg(err.message);
         setLoading(false);
       }
-    });
-  }, [setLoading, characters, charList]);
+    },
+    [setLoading, setErrMsg],
+  );
 
-  console.log(charList);
+  // fill CharList
+  const fillChars = useCallback(() => {
+    characters.map((c) => fetchURL(c, setCharList));
+  }, [characters, fetchURL, setCharList]);
+
+  // fill planets
+  const fillPlanets = useCallback(() => {
+    charList.map((p) => fetchURL(p.homeworld, setPlanets));
+  }, [charList, fetchURL]);
+
   useEffect(() => {
-    fetchChars();
-  }, [fetchChars]);
+    fillChars();
+    fillPlanets();
+  }, [fillChars, fillPlanets]);
 
   return (
     <div className="film-wrap">
@@ -56,11 +67,24 @@ const Film = () => {
       </div>
 
       <div className="chars-wrap">
-        {characters.map((c) => (
-          <div key={c} className="char">
-            {c}
-          </div>
-        ))}
+        {charList.length > 0 &&
+          charList.map((c, i) => (
+            <div key={i} className="char">
+              <div>
+                <span className="pre">Name: </span>
+                {c.name}
+              </div>
+              <div>
+                <span className="pre">Planet: </span>
+                {/* {planets[i]} */}
+                hi
+              </div>
+              <div>
+                <span className="pre">Starships: </span>
+                {c.starships}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

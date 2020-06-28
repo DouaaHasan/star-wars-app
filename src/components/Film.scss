@@ -47,14 +47,17 @@
 
   button {
     padding: 2rem;
-    background: maroon;
+    background: rgba(0, 0, 0, 0.4);
     font-size: 5rem;
-    color: white;
+    color: maroon;
     cursor: pointer;
     border-radius: 20px;
+    border-color: maroon;
 
     &:hover {
-      color: black;
+      color: white;
+      background: maroon;
+      transition: all 0.3s ease-in-out;
     }
 
     &:focus {
@@ -73,8 +76,20 @@
     .char {
       border: 1px solid maroon;
       min-width: 30%;
+      max-width: 30%;
+      overflow-wrap: break-word;
+      // text-align: center;
+      padding: 1rem;
       min-height: 30vh;
       margin: 1rem;
+
+      .pre {
+        text-align: left;
+        color: maroon;
+        font-weight: bold;
+        background: #ccc;
+        margin-right: 2rem;
+      }
     }
   }
 }
