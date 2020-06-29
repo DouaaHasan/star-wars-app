@@ -5,6 +5,7 @@ import { AppContext } from "../context/AppContext";
 
 const FilmTitle = ({ film }) => {
   const { setTitleClicked, setFilm } = useContext(AppContext);
+
   return (
     <h2
       onClick={() => {
