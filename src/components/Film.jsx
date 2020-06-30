@@ -15,9 +15,9 @@ const Film = () => {
     planets,
     setPlanets,
     setStarships,
-    // starships,
+    starships,
     starshipsNames,
-    // setStarshipsNames,
+    setStarshipsNames,
   } = useContext(AppContext);
   const { director, opening_crawl, producer, title, release_date, characters } = film;
   // state
@@ -56,21 +56,26 @@ const Film = () => {
   }, [chars, setStarships]);
 
   // fill starshipsNames
-  // const fillStarshipsNames = useCallback(async () => {
-  //   try {
-  //     starships.map((s) => {
-  //       if (s.length === 0) {
-  //         setStarshipsNames((pre) => [...pre, "No Starships"]);
-  //       } else {
-  //         fetchURL(s, setStarshipsNames);
-  //       }
-  //     });
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }, [starships, fetchURL]);
-
-  // const fillStarshipsNames = console.log(starshipsNames);
+  const fillStarshipsNames = useCallback(() => {
+    const names = [];
+    try {
+      starships.forEach((arr) => {
+        if (arr.length === 0) {
+          names.push([]);
+        } else {
+          const tempArr = [];
+          arr.map(async (ship) => {
+            const fetched = await axios.get(ship);
+            tempArr.push(fetched.data.name);
+          });
+          names.push(tempArr);
+        }
+        setStarshipsNames(names);
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  }, [starships, setStarshipsNames]);
 
   useEffect(() => {
     fillChars();
@@ -81,9 +86,9 @@ const Film = () => {
     fillStarships();
   }, [fillPlanets, fillStarships]);
 
-  // useEffect(() => {
-  //   fillStarshipsNames();
-  // }, [fillStarshipsNames]);
+  useEffect(() => {
+    fillStarshipsNames();
+  }, [fillStarshipsNames]);
 
   return (
     <div className="film-wrap">
@@ -109,25 +114,24 @@ const Film = () => {
       <div className="chars-wrap">
         {chars.length > 0 &&
           chars.map((c, i) => (
-            <div
-              key={i}
-              className="char"
-              // onClick={() => {
-              //   console.log(starshipsNames[i]);
-              // }}
-            >
-              <div>
+            <div key={i} className="char" onClick={() => console.log(starshipsNames[i])}>
+              <div className="half">
                 <span className="pre">Name: </span>
-                {c.name}
+                <div>{c.name}</div>
               </div>
-              <div>
+              <div className="half">
                 <span className="pre">Planet: </span>
-                {planets[i] && planets[i].name}
+                <div>{planets[i] && planets[i].name}</div>
               </div>
-              <div>
+              <div className="half">
                 <span className="pre">Starships: </span>
-                {/* {starships[i] && } */}
-                {c.starships}
+                <div>
+                  {starshipsNames[i] && starshipsNames[i].length === 0 && <p>None</p>}
+
+                  {starshipsNames[i] &&
+                    starshipsNames[i].length > 0 &&
+                    starshipsNames[i].map((s, i) => <p key={i}>{s}</p>)}
+                </div>
               </div>
             </div>
           ))}

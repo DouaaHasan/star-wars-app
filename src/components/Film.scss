@@ -92,10 +92,20 @@
       min-height: 30vh;
       margin: 1rem;
 
-      .pre {
-        text-align: left;
-        font-weight: bold;
-        margin-right: 3rem;
+      .half {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        border-bottom: 1px solid gray;
+        padding: 1rem 0;
+
+        .pre {
+          text-align: left;
+          font-weight: bold;
+          letter-spacing: 0.3rem;
+          color: crimson;
+          text-transform: uppercase;
+        }
       }
     }
   }
